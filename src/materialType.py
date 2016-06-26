@@ -9,7 +9,7 @@ if __name__ == '__main__':
 
     numTrain = 5896
     numTest = 5896
-    iteration = 10
+    iteration = 40
     rate = 0.05
     errorTrain = 0
     errorTest = 0
@@ -17,7 +17,7 @@ if __name__ == '__main__':
     # data_x = []
     # data_y = []
 
-    NN = net.BPANN(112,3,1,1,rate,2,1)
+    NN = net.BPANN(112,3,1,1,rate,1,1)
     NN.numTrain = numTrain
     NN.numTest = numTest
 

@@ -112,9 +112,9 @@ class BPANN(object):
         self.biasHidden = self.biasHidden - self.rate * self.senHidden
 
     def updateWeight_l1(self):
-        weightHiddenOutput_sgn = map(func.list_sgn,self.weightHiddenOutput)
+        weightHiddenOutput_sgn = map(func.list_sgn,np.ndarray.tolist(self.weightHiddenOutput))
         #update w2
-        self.weightHiddenOutput = self.weightHiddenOutput - weightHiddenOutput_sgn*self.rate*self.weightPenalty/self.numTrain - self.rate * np.dot(
+        self.weightHiddenOutput = self.weightHiddenOutput - (self.rate*self.weightPenalty/self.numTrain)*np.array(weightHiddenOutput_sgn) - self.rate * np.dot(
             np.transpose(
                 self.vecHidden,
             ),
@@ -122,8 +122,8 @@ class BPANN(object):
         )
 
         #update w1
-        weightInputHidden_sgn = map(func.list_sgn,self.weightInputHidden)
-        self.weightInputHidden = self.weightInputHidden - weightInputHidden_sgn*self.rate*self.weightPenalty/self.numTrain - self.rate * np.dot(
+        weightInputHidden_sgn = map(func.list_sgn,np.ndarray.tolist(self.weightInputHidden))
+        self.weightInputHidden = self.weightInputHidden - (self.rate*self.weightPenalty/self.numTrain)*np.array(weightInputHidden_sgn) - self.rate * np.dot(
             np.transpose(
                 self.vecInput
             ),
